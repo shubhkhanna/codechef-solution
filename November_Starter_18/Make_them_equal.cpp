@@ -6,19 +6,6 @@ using namespace std;
     cin.tie(NULL);                    \
     cout.tie(NULL);
 
-bool eq(int *arr, int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] != arr[0])
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 int main()
 {
     fastIO;
@@ -35,31 +22,25 @@ int main()
         for (int i = 0; i < n; i++)
             cin >> arr[i];
 
-        int x = -1;
+        int x = INT_MIN;
+        int y = INT_MAX;
 
         for (int i = 0; i < n; i++)
         {
-            if (arr[i] > x)
-            {
-                x = arr[i];
-            }
+            x = max(x, arr[i]);
+            y = min(y, arr[i]);
         }
 
-        int ans = 0;
-
-        while (eq(arr, n) == false)
+        if (y == x)
         {
-            ans++;
-            for (int i = 0; i < n; i++)
-            {
-                if (arr[i] < x)
-                {
-                    arr[i]++;
-                }
-            }
+            cout << "0";
+        }
+        else
+        {
+            cout << x - y;
         }
 
-        cout << ans << endl;
+        cout << endl;
     }
     return 0;
 }
