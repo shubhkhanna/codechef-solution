@@ -20,14 +20,28 @@ int main()
         string n1, n2;
         cin >> n1 >> n2;
 
+        bool bb;
         ll ans = 0;
-        for (int i = 0; i < n; i++)
+
+        bb = n2[n - 1] > n1[n - 1];
+        if (bb)
+            ans++;
+
+        for (int i = n - 2; i >= 0; i--)
         {
-            string p1 = n1.substr(i, n - i);
-            string p2 = n2.substr(i, n - i);
-            if (p1 < p2)
+            if (n2[i] > n1[i])
             {
+                bb = true;
                 ans++;
+            }
+            else if (n2[i] < n1[i])
+            {
+                bb = false;
+            }
+            else
+            {
+                if (bb)
+                    ans++;
             }
         }
 
